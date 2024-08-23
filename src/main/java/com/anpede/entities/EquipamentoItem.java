@@ -1,17 +1,21 @@
 package com.anpede.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import com.anpede.entities.enums.Situacao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,10 +32,22 @@ public class EquipamentoItem implements Serializable {
 	@ManyToOne
 	private Equipamento equipamento;
 	
+	@OneToMany(mappedBy = "equipamentoItem", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Emprestimo> emprestimo;
+	
 	public EquipamentoItem() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public List<Emprestimo> getEmprestimo() {
+		return emprestimo;
+	}
+
+
+
 	public EquipamentoItem(Long id, String numeroSerie, Situacao situacao) {		
 		this.id = id;
 		this.numeroSerie = numeroSerie;

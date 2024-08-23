@@ -1,12 +1,17 @@
 package com.anpede.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +30,10 @@ public class Fralda implements Serializable {
 	private String incontinencia;
 	private String periodo;
 	
+	@OneToMany(mappedBy = "fralda", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<RetiradaFralda> retiradaFralda;
+	
 	
 	public Fralda() {
 		// TODO Auto-generated constructor stub
@@ -41,6 +50,11 @@ public class Fralda implements Serializable {
 		this.genero = genero;
 		this.incontinencia = incontinencia;
 		this.periodo = periodo;
+	}
+
+	
+	public List<RetiradaFralda> getRetiradaFralda() {
+		return retiradaFralda;
 	}
 
 

@@ -3,11 +3,16 @@ package com.anpede.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +30,14 @@ public class Associado implements Serializable {
 	private String email;
 	private String endereco;
 	
+	@OneToMany(mappedBy = "associado", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Emprestimo> emprestimo;
+	
+	@OneToMany(mappedBy = "associado", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<RetiradaFralda> retiradaFralda;
+	
 	public Associado() {
 		// TODO Auto-generated constructor stub
 	}
@@ -38,6 +51,15 @@ public class Associado implements Serializable {
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
+	}
+		
+	
+	public List<RetiradaFralda> getRetiradaFralda() {
+		return retiradaFralda;
+	}
+
+	public List<Emprestimo> getEmprestimo() {
+		return emprestimo;
 	}
 
 	public Long getId() {

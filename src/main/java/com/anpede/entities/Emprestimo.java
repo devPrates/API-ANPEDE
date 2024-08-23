@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +25,12 @@ public class Emprestimo implements Serializable{
 	private EquipamentoItem equipamento;
 	private String motivo;
 	
+	@ManyToOne
+	private Associado associado;
+	
+	@ManyToOne
+	private EquipamentoItem equipamentoItem;
+	
 	public Emprestimo() {
 		// TODO Auto-generated constructor stub
 	}
@@ -36,6 +43,24 @@ public class Emprestimo implements Serializable{
 		this.dataDevolucao = dataDevolucao;
 		this.equipamento = equipamento;
 		this.motivo = motivo;
+	}
+	
+	
+
+	public Associado getAssociado() {
+		return associado;
+	}
+
+	public void setAssociado(Associado associado) {
+		this.associado = associado;
+	}
+
+	public EquipamentoItem getEquipamentoItem() {
+		return equipamentoItem;
+	}
+
+	public void setEquipamentoItem(EquipamentoItem equipamentoItem) {
+		this.equipamentoItem = equipamentoItem;
 	}
 
 	public Long getId() {

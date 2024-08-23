@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +23,13 @@ public class RetiradaFralda implements Serializable {
 	private Integer quantidade;
 	private LocalDate dataRetirada;
 	
+	@ManyToOne
+	private Associado associado;
+	
+	@ManyToOne
+	private Fralda fralda;
+	
+	
 	public RetiradaFralda() {
 		// TODO Auto-generated constructor stub
 	}
@@ -31,6 +39,24 @@ public class RetiradaFralda implements Serializable {
 		this.id = id;
 		this.quantidade = quantidade;
 		this.dataRetirada = dataRetirada;
+	}
+	
+	
+	
+	public Fralda getFralda() {
+		return fralda;
+	}
+
+	public void setFralda(Fralda fralda) {
+		this.fralda = fralda;
+	}
+
+	public Associado getAssociado() {
+		return associado;
+	}
+
+	public void setAssociado(Associado associado) {
+		this.associado = associado;
 	}
 
 	public Long getId() {

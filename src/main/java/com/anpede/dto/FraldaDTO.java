@@ -1,8 +1,12 @@
 package com.anpede.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.anpede.entities.Fralda;
+import com.anpede.entities.RetiradaFralda;
 
 public class FraldaDTO implements Serializable {
 private static final long serialVersionUID = 1L;
@@ -14,6 +18,7 @@ private static final long serialVersionUID = 1L;
 	private String genero;
 	private String incontinencia;
 	private String periodo;
+	private List<RetiradaFralda> retiradaFralda = new ArrayList<>();
 	
 	
 	public FraldaDTO() {
@@ -42,8 +47,15 @@ private static final long serialVersionUID = 1L;
 		this.incontinencia = entity.getIncontinencia();
 		this.periodo = entity.getPeriodo();
 	}
+	
+	public FraldaDTO(Fralda entity, List<RetiradaFralda> retiradaFralda) {
+		this(entity);
+		this.retiradaFralda = retiradaFralda.stream().map(x -> 
+		new RetiradaFralda(x.getId(), x.getQuantidade(), x.getDataRetirada()))
+				.collect(Collectors.toList());
+	}
 
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -111,6 +123,11 @@ private static final long serialVersionUID = 1L;
 
 	public void setPeriodo(String periodo) {
 		this.periodo = periodo;
+	}
+
+
+	public List<RetiradaFralda> getRetiradaFralda() {
+		return retiradaFralda;
 	}
 
 	

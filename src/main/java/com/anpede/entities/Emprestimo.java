@@ -22,7 +22,6 @@ public class Emprestimo implements Serializable{
 	private Long id;
 	private LocalDate dataRetirada;
 	private LocalDate dataDevolucao;
-	private EquipamentoItem equipamento;
 	private String motivo;
 	
 	@ManyToOne
@@ -35,33 +34,17 @@ public class Emprestimo implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Emprestimo(Long id, LocalDate dataRetirada, LocalDate dataDevolucao, EquipamentoItem equipamento,
+	public Emprestimo(Long id, LocalDate dataRetirada, LocalDate dataDevolucao, EquipamentoItem equipamentoItem,
 			String motivo) {
 		super();
 		this.id = id;
 		this.dataRetirada = dataRetirada;
 		this.dataDevolucao = dataDevolucao;
-		this.equipamento = equipamento;
+		this.equipamentoItem = equipamentoItem;
 		this.motivo = motivo;
 	}
 	
 	
-
-	public Associado getAssociado() {
-		return associado;
-	}
-
-	public void setAssociado(Associado associado) {
-		this.associado = associado;
-	}
-
-	public EquipamentoItem getEquipamentoItem() {
-		return equipamentoItem;
-	}
-
-	public void setEquipamentoItem(EquipamentoItem equipamentoItem) {
-		this.equipamentoItem = equipamentoItem;
-	}
 
 	public Long getId() {
 		return id;
@@ -87,20 +70,28 @@ public class Emprestimo implements Serializable{
 		this.dataDevolucao = dataDevolucao;
 	}
 
-	public EquipamentoItem getEquipamento() {
-		return equipamento;
-	}
-
-	public void setEquipamento(EquipamentoItem equipamento) {
-		this.equipamento = equipamento;
-	}
-
 	public String getMotivo() {
 		return motivo;
 	}
 
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
+	}
+
+	public Associado getAssociado() {
+		return associado;
+	}
+
+	public void setAssociado(Associado associado) {
+		this.associado = associado;
+	}
+
+	public EquipamentoItem getEquipamentoItem() {
+		return equipamentoItem;
+	}
+
+	public void setEquipamentoItem(EquipamentoItem equipamentoItem) {
+		this.equipamentoItem = equipamentoItem;
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class AssociadoDTO implements Serializable {
 	public AssociadoDTO(Emprestimo entity, List<Emprestimo> emprestimo) {
 		this();
 		this.emprestimo = emprestimo.stream().map(x -> 
-		new Emprestimo(x.getId(), x.getDataRetirada(), x.getDataDevolucao(), x.getEquipamento(), x.getMotivo()))
+		new Emprestimo(x.getId(), x.getDataRetirada(), x.getDataDevolucao(), x.getEquipamentoItem(), x.getMotivo()))
 				.collect(Collectors.toList());
 	}
 	

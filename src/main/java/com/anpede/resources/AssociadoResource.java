@@ -1,6 +1,7 @@
 package com.anpede.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,14 +27,17 @@ public class AssociadoResource {
 	@Autowired
 	private AssociadoService service;
 	
-	/*@GetMapping
-	public ResponseEntity<List<AssociadoDTO>> findAll(){
-		List<AssociadoDTO> list = service.findAll();
-		return ResponseEntity.ok().body(list);
-	}*/
+	
 	
 	//localhost:8080/associados?page=0&size=20&ordeby=asc/desc
 	/*
+	 * 
+	 * @GetMapping
+	public ResponseEntity<Page<AssociadoDTO>> findAllPaged(Pageable pageable){
+		Page<AssociadoDTO> list = service.findAllPaged(pageable);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@GetMapping
 	public ResponseEntity<Page<AssociadoDTO>> findAllPaged(
 				@RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -50,10 +54,12 @@ public class AssociadoResource {
 	}*/
 	
 	@GetMapping
-	public ResponseEntity<Page<AssociadoDTO>> findAllPaged(Pageable pageable){
-		Page<AssociadoDTO> list = service.findAllPaged(pageable);
+	public ResponseEntity<List<AssociadoDTO>> findAll(){
+		List<AssociadoDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
+	
+	
 	
 	//localhost:8080/associados/1
 	@GetMapping(value = "/{id}")

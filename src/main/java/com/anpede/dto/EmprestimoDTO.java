@@ -3,6 +3,7 @@ package com.anpede.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.anpede.entities.Associado;
 import com.anpede.entities.Emprestimo;
 import com.anpede.entities.EquipamentoItem;
 
@@ -14,27 +15,30 @@ public class EmprestimoDTO implements Serializable {
 	private LocalDate dataDevolucao;
 	private EquipamentoItem equipamento;
 	private String motivo;
+	private Associado associado;
 	
 	public EmprestimoDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public EmprestimoDTO(Long id, LocalDate dataRetirada, LocalDate dataDevolucao, EquipamentoItem equipamento,
-			String motivo) {
+			String motivo, Associado associado) {
 		super();
 		this.id = id;
 		this.dataRetirada = dataRetirada;
 		this.dataDevolucao = dataDevolucao;
 		this.equipamento = equipamento;
 		this.motivo = motivo;
+		this.setAssociado(associado);
 	}
 	
 	public EmprestimoDTO(Emprestimo entity) {
 		this.id = entity.getId();
 		this.dataRetirada = entity.getDataDevolucao();
 		this.dataDevolucao = entity.getDataDevolucao();
-		this.equipamento = entity.getEquipamento();
+		this.equipamento = entity.getEquipamentoItem();
 		this.motivo = entity.getMotivo();
+		this.associado = entity.getAssociado();
 	}
 
 	public Long getId() {
@@ -75,6 +79,14 @@ public class EmprestimoDTO implements Serializable {
 
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
+	}
+
+	public Associado getAssociado() {
+		return associado;
+	}
+
+	public void setAssociado(Associado associado) {
+		this.associado = associado;
 	}
 	
 	

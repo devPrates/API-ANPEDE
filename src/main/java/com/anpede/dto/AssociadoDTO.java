@@ -52,7 +52,7 @@ public class AssociadoDTO implements Serializable {
 	public AssociadoDTO(Fralda entity, List<RetiradaFralda> retiradaFralda) {
 		this();
 		this.retiradaFralda = retiradaFralda.stream().map(x -> 
-		new RetiradaFralda(x.getId(), x.getQuantidade(), x.getDataRetirada()))
+		new RetiradaFralda(x.getId(), x.getQuantidade(), x.getDataRetirada(), x.getAssociado()))
 				.collect(Collectors.toList());
 	}
 	

@@ -34,11 +34,12 @@ public class RetiradaFralda implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RetiradaFralda(Long id, Integer quantidade, LocalDate dataRetirada) {
+	public RetiradaFralda(Long id, Integer quantidade, LocalDate dataRetirada, Associado associado) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
 		this.dataRetirada = dataRetirada;
+		this.associado = associado;
 	}
 	
 	

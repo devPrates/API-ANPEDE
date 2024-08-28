@@ -11,58 +11,51 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import com.anpede.dto.EmprestimoDTO;
-import com.anpede.entities.Emprestimo;
-import com.anpede.repositories.EmprestimoRepository;
+import com.anpede.dto.FraldaDTO;
+import com.anpede.entities.Fralda;
+import com.anpede.repositories.FraldaRepository;
 import com.anpede.services.exceptions.DataBaseException;
 import com.anpede.services.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
-public class EmprestimoService {
-	
+public class FraldaService {
+
 	@Autowired
-	private EmprestimoRepository repository;
+	private FraldaRepository repository;
 	
 	@Transactional(readOnly = true)
-	public List<EmprestimoDTO> findAll(){		
-		List<Emprestimo> list = repository.findAll();
-		return list.stream().map(a -> new EmprestimoDTO(a)).collect(Collectors.toList());		
+	public List<FraldaDTO> findAll(){				
+		List<Fralda> list = repository.findAll();
+		return list.stream().map(e -> new FraldaDTO(e, e.getRetiradaFralda())).collect(Collectors.toList());		
 	}
-	
+
 	@Transactional(readOnly = true)
-	public EmprestimoDTO findById(Long id) {
-		Optional<Emprestimo> obj = repository.findById(id);
-		Emprestimo entity = obj.orElseThrow(() -> 
+	public FraldaDTO findById(Long id) {
+		Optional<Fralda> obj = repository.findById(id);
+		Fralda entity = obj.orElseThrow(() -> 
 			new ResourceNotFoundException("O registro não localizado na base de dados"));
-		return new EmprestimoDTO(entity);
-	}
-	
-	private void converterDtoEmEntidade(EmprestimoDTO dto, Emprestimo entity) {
-		entity.setDataRetirada(dto.getDataRetirada());
-		entity.setDataDevolucao(dto.getDataDevolucao());
-		entity.setEquipamentoItem(dto.getEquipamento());
-		
+		return new FraldaDTO(entity);
 	}
 	
 	@Transactional
-	public EmprestimoDTO insert(EmprestimoDTO dto) {
-		Emprestimo entity = new Emprestimo();
+	public FraldaDTO insert(FraldaDTO dto) {
+		Fralda entity = new Fralda();
 		converterDtoEmEntidade(dto, entity);					
 		entity = repository.save(entity);
-		return new EmprestimoDTO(entity);
+		return new FraldaDTO(entity);
 	}
 	
 	@Transactional
-	public EmprestimoDTO update(Long id, EmprestimoDTO dto) {
+	public FraldaDTO update(Long id, FraldaDTO dto) {
 		try {
 			
-			Emprestimo entity = repository.getReferenceById(id);
+			Fralda entity = repository.getReferenceById(id);
 			converterDtoEmEntidade(dto, entity);
 				
 			entity = repository.save(entity);
-			return new EmprestimoDTO(entity);
+			return new FraldaDTO(entity);
 			
 		} catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException("O recurso com o ID "+id
@@ -82,5 +75,12 @@ public class EmprestimoService {
 		}
 	}
 	
-	
+	private void converterDtoEmEntidade(FraldaDTO dto, Fralda entity) {
+		entity.setDescricao(dto.getDescricao());
+		entity.setQuantidadePacote(dto.getQuantidadePacote());
+		entity.setTamanho(dto.getTamanho());
+		entity.setGenero(dto.getGenero());
+		entity.setIncontinencia(dto.getIncontinencia());
+		entity.setPeriodo(dto.getPeriodo());
+	}
 }

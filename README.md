@@ -16,9 +16,9 @@ Qualquer pessoa poderá solicitar o empréstimo de equipamentos, poderá agendar
 
 ## Estudo de Casos
 ### Diagrama de Casos de Uso
-  <img src="docs/gamelist.png" alt="Logo do Projeto" width="800">
+  <img src="docs/casos-de-uso.png" alt="Logo do Projeto" width="800">
 ### Diagrama de Classes
-  <img src="docs/gamelist.png" alt="Logo do Projeto" width="800">
+  <img src="docs/diagrama-classe.png" alt="Logo do Projeto" width="800">
 
 
 ## Tecnologias Utilizadas

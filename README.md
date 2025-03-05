@@ -14,16 +14,21 @@ Qualquer pessoa poderá solicitar o empréstimo de equipamentos, poderá agendar
 - Efetuar Retirada de Fraldas
 - Efetuar Empréstimo de Equipamentos
 
+## Tecnologias Utilizadas
+<p>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=java,spring,postgres" />
+  </a>
+</p>
+
 ## Estudo de Casos
 ### Diagrama de Casos de Uso
   <img src="docs/casos-de-uso.png" alt="Logo do Projeto" width="800">
+  
 ### Diagrama de Classes
   <img src="docs/diagrama-classe.png" alt="Logo do Projeto" width="800">
 
 
-## Tecnologias Utilizadas
-- **Linguagem de Programação**: Java
-- **Banco de Dados**: PostgreSQL.
-- **Framework**: Spring Boot.
+
 
 
